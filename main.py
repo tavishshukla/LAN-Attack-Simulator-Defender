@@ -25,7 +25,16 @@ def main():
   sims=[PortScanSimulator(),ConnectionBurstSimulator(),FailedLoginSimulator(),HttpBurstSimulator()]
   for i,s in enumerate(sims,1):print(f"{i}. {s.name}")
   c=input("Select simulation (1-4, a=all): ").strip().lower()
-  selected=sims if c=="a" else [sims[int(c)-1]]
+  if c=="a":
+   selected=sims
+  else:
+   try:
+    index=int(c)-1
+    if not 0 <= index < len(sims):
+     raise ValueError
+    selected=[sims[index]]
+   except ValueError:
+    raise SystemExit("Invalid selection. Choose 1-4 or a.")
   for s in selected:
    for e in s.generate():
     db.insert_event(e);print(f"[SIM] {e.event_type}: {e.metadata}")
