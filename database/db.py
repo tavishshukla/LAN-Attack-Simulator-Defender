@@ -19,3 +19,5 @@ class Database:
   with self._conn() as c: return {k:c.execute(f'SELECT COUNT(*) FROM {k}').fetchone()[0] for k in ['events','alerts','incidents']},c.execute('SELECT severity,COUNT(*) n FROM alerts GROUP BY severity').fetchall()
  def incidents(self):
   with self._conn() as c: return c.execute('SELECT * FROM incidents ORDER BY timestamp DESC LIMIT 25').fetchall()
+ def recent_events(self,limit=30):
+  with self._conn() as c: return c.execute('SELECT * FROM events ORDER BY timestamp DESC LIMIT ?',(limit,)).fetchall()

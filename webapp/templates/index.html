@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LAN Defender SOC</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div>
+      <div class="eyebrow">LAN DEFENDER</div>
+      <h1>Security Operations Center</h1>
+      <p>Safe simulated telemetry and defensive incident monitoring.</p>
+    </div>
+    <button id="run">Run Safe Lab Simulation</button>
+  </header>
+
+  <main>
+    <section class="cards" id="cards"></section>
+    <section class="grid">
+      <article class="panel">
+        <h2>Severity</h2><div id="severity"></div>
+      </article>
+      <article class="panel">
+        <h2>Detection Rules</h2><div id="rules"></div>
+      </article>
+    </section>
+    <section class="panel">
+      <h2>Recent Incidents</h2>
+      <div class="table-wrap"><table><thead><tr><th>Severity</th><th>Rule</th><th>Source</th><th>Status</th><th>Response</th></tr></thead><tbody id="incidents"></tbody></table></div>
+    </section>
+    <section class="panel">
+      <h2>Telemetry Stream</h2>
+      <div id="events" class="events"></div>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
