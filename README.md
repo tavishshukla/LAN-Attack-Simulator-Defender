@@ -36,7 +36,7 @@ Linux/macOS: `source .venv/bin/activate`
     python main.py simulator
     python main.py incidents
     python main.py stats
-    python main.py config
+    python main.py config\n    python main.py web\n\nThen open http://127.0.0.1:5000 in your browser. The web dashboard is local-only and the button runs the same safe simulated lab.
 
 The first run creates `data/lab.db`.
 
