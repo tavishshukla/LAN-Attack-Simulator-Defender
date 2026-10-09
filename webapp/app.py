@@ -4,6 +4,7 @@ from core.config import load_config
 from core.lab import run_lab
 from database.db import Database
 
+
 ROOT = Path(__file__).resolve().parents[1]
 
 def create_app():
@@ -31,6 +32,14 @@ def create_app():
     @app.get("/api/events")
     def events():
         return jsonify([dict(row) for row in db.recent_events(30)])
+
+    @app.get("/api/siem/alerts")
+    def siem_alerts():
+        return jsonify([dict(row) for row in db.siem_alerts(30)])
+
+    @app.get("/api/siem/events")
+    def siem_events():
+        return jsonify([dict(row) for row in db.siem_events(50)])
 
     @app.get("/api/rules")
     def rules():
