@@ -314,3 +314,7 @@ This project is intentionally limited to defensive education and authorized loca
 ## Quick start
 
 After cloning and installing dependencies, the fastest demo is `python main.py lab`, followed by `python main.py web`. Then open the local dashboard at http://127.0.0.1:5000.
+
+## Development checks
+
+Before pushing changes, run `python -m pytest` from the project root. This catches regressions across the simulator, detection, database, response, and dashboard components.
