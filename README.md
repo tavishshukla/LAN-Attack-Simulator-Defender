@@ -310,3 +310,7 @@ cd LAN-Attack-Simulator-Defender
 ## Security model
 
 This project is intentionally limited to defensive education and authorized local monitoring. Do not point the simulator or any future modifications at systems you do not own or have permission to test.
+
+## Quick start
+
+After cloning and installing dependencies, the fastest demo is `python main.py lab`, followed by `python main.py web`. Then open the local dashboard at http://127.0.0.1:5000.
