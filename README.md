@@ -324,3 +324,7 @@ Before pushing changes, run `python -m pytest` from the project root. This catch
 The interactive simulator now rejects invalid menu selections cleanly instead of raising an index error. Choose `1`-`4` for an individual simulation or `a` to run all four.
 
 `python main.py simulator`
+
+## Database health
+
+The database layer now exposes a lightweight health summary for local diagnostics, including stored event, alert, and incident counts.
