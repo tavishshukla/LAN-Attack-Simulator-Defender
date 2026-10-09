@@ -1,0 +1,8 @@
+{
+  "detection": {
+    "port_scan": {"threshold": 10, "window_seconds": 5, "severity": "HIGH"},
+    "connection_burst": {"threshold": 30, "window_seconds": 5, "severity": "MEDIUM"},
+    "failed_login": {"threshold": 5, "window_seconds": 30, "severity": "HIGH"},
+    "http_burst": {"threshold": 50, "window_seconds": 10, "severity": "MEDIUM"}
+  }
+}
