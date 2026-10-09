@@ -318,3 +318,9 @@ After cloning and installing dependencies, the fastest demo is `python main.py l
 ## Development checks
 
 Before pushing changes, run `python -m pytest` from the project root. This catches regressions across the simulator, detection, database, response, and dashboard components.
+
+## Simulator input validation
+
+The interactive simulator now rejects invalid menu selections cleanly instead of raising an index error. Choose `1`-`4` for an individual simulation or `a` to run all four.
+
+`python main.py simulator`
