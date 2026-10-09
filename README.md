@@ -6,7 +6,7 @@ An educational LAN cybersecurity lab that simulates suspicious network activity 
 
 ## Architecture
 
-Real Network Telemetry / Simulator -> Event Pipeline -> Detection Rules -> Alerts -> Incidents -> Response -> SQLite -> Rich Dashboard
+Real Network Telemetry / Real Network Telemetry / Windows Event Logs / Simulator -> Event Pipeline -> Detection Rules -> Alerts -> Incidents -> Response -> SQLite -> Rich Dashboard
 
 ## Features
 
@@ -20,6 +20,7 @@ Real Network Telemetry / Simulator -> Event Pipeline -> Detection Rules -> Alert
 - Rich terminal output
 - Automated tests
 - Read-only real network connection monitoring on the local machine
+- Mini SIEM for local Windows Event Logs (Security/System/Application)
 
 ## Setup
 
@@ -35,6 +36,7 @@ Linux/macOS: `source .venv/bin/activate`
 
     python main.py lab
     python main.py monitor
+    python main.py siem
     python main.py simulator
     python main.py incidents
     python main.py stats
