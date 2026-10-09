@@ -7,12 +7,15 @@ from simulator.connection_burst import ConnectionBurstSimulator
 from simulator.failed_login import FailedLoginSimulator
 from simulator.http_burst import HttpBurstSimulator
 def run_lab(cfg,db):
- detector=Detector(cfg["detection"]);response=ResponseEngine();print("\n=== LAN DEFENDER | CYBERSECURITY LAB ===\n")
+ detector=Detector(cfg["detection"]);response=ResponseEngine()
+ print("\n=== LAN DEFENDER | SECURITY OPERATIONS CENTER ===\n")
  for sim in [PortScanSimulator(),ConnectionBurstSimulator(),FailedLoginSimulator(),HttpBurstSimulator()]:
-  print(f"[SIM] {sim.name}")
+  print(f"[SIMULATION] {sim.name}")
   for event in sim.generate():
    db.insert_event(event);live_event(event)
    for alert in detector.process(event):
-    db.insert_alert(alert);db.insert_incident(alert);show_alert(alert);action=response.respond(alert);db.update_incident_response(alert.alert_id,action);print(f"[RESP] {action}")
+    db.insert_alert(alert);db.insert_incident(alert);show_alert(alert)
+    action=response.respond(alert);db.update_incident_response(alert.alert_id,action)
+    print(f"[RESPONSE] {action}")
    sleep(.01)
- print("\nLab complete. Run stats to inspect results.\n")
+ print("\nLab complete: simulated activity -> detection -> alert -> incident -> response.\n")
