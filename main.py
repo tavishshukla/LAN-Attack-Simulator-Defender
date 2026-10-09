@@ -10,7 +10,7 @@ from simulator.failed_login import FailedLoginSimulator
 from simulator.http_burst import HttpBurstSimulator
 ROOT=Path(__file__).parent
 def main():
- p=argparse.ArgumentParser(description="LAN Attack Simulator + Defender");p.add_argument("command",choices=["lab","simulator","defender","incidents","stats","config"]);a=p.parse_args()
+ p=argparse.ArgumentParser(description="LAN Attack Simulator + Defender");p.add_argument("command",choices=["lab","simulator","defender","incidents","stats","config","web"]);a=p.parse_args()
  cfg=load_config(ROOT/"config/config.json");db=Database(ROOT/"data/lab.db");db.initialize()
  if a.command=="lab":run_lab(cfg,db)
  elif a.command=="simulator":
@@ -22,5 +22,8 @@ def main():
  elif a.command=="defender":print("Use the lab command for the live simulation.")
  elif a.command=="incidents":show_incidents(db)
  elif a.command=="stats":show_stats(db)
+ elif a.command=="web":
+  from webapp.app import create_app
+  create_app().run(host="127.0.0.1",port=5000,debug=False)
  else:print(json.dumps(cfg,indent=2))
 if __name__=="__main__":main()
