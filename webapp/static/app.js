@@ -8,6 +8,10 @@ function render(data,incidents,events,rules){
   $("incidents").innerHTML=incidents.map(i=>'<tr><td class="'+esc(i.severity).toLowerCase()+'">'+esc(i.severity)+'</td><td>'+esc(i.type)+'</td><td>'+esc(i.source)+'</td><td>'+esc(i.status)+'</td><td>'+esc(i.response||"pending")+'</td></tr>').join("")||'<tr><td colspan="5" class="muted">No incidents yet</td></tr>';
   $("events").innerHTML=events.map(e=>'<div class="event"><span class="muted">'+esc(e.timestamp)+'</span> '+esc(e.event_type)+' '+esc(e.source)+' → '+esc(e.destination)+' <span class="muted">'+esc(e.metadata)+'</span></div>').join("");
 }
-async function refresh(){const [s,i,e,r]=await Promise.all([get("/api/summary"),get("/api/incidents"),get("/api/events"),get("/api/rules")]);render(s,i,e,r);}
+async function refresh(){
+  const [s,i,e,r,sa]=await Promise.all([get("/api/summary"),get("/api/incidents"),get("/api/events"),get("/api/rules"),get("/api/siem/alerts")]);
+  render(s,i,e,r);
+  $("siem-alerts").innerHTML=sa.map(a=>'<tr><td class="'+esc(a.severity).toLowerCase()+'">'+esc(a.severity)+'</td><td>'+esc(a.rule)+'</td><td>'+esc(a.event_id)+'</td><td>'+esc(a.channel)+'</td><td>'+esc(a.timestamp)+'</td></tr>').join("")||'<tr><td colspan="5" class="muted">No SIEM alerts yet</td></tr>';
+}
 $("run").onclick=async()=>{ $("run").disabled=true;$("run").textContent="Running…";try{await fetch("/api/lab/run",{method:"POST"});await refresh();}finally{$("run").disabled=false;$("run").textContent="Run Safe Lab Simulation";}};
 refresh();setInterval(refresh,3000);
