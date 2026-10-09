@@ -13,7 +13,7 @@ ROOT=Path(__file__).parent
 
 def main():
  p=argparse.ArgumentParser(description="LAN Attack Simulator + Defender")
- p.add_argument("command",choices=["lab","simulator","defender","monitor","incidents","stats","config","web"])
+ p.add_argument("command",choices=["lab","simulator","defender","monitor","siem","incidents","stats","config","web"])
  a=p.parse_args()
  cfg=load_config(ROOT/"config/config.json")
  db=Database(ROOT/"data/lab.db")
@@ -32,6 +32,9 @@ def main():
  elif a.command in ("defender","monitor"):
   from monitor.engine import run_monitor
   run_monitor(cfg,db)
+ elif a.command=="siem":
+  from siem.engine import SIEM
+  SIEM(db).run()
  elif a.command=="incidents":
   show_incidents(db)
  elif a.command=="stats":
