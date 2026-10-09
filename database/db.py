@@ -29,3 +29,6 @@ class Database:
   with self._conn() as c: return c.execute('SELECT * FROM siem_events ORDER BY timestamp DESC LIMIT ?',(limit,)).fetchall()
  def recent_events(self,limit=30):
   with self._conn() as c: return c.execute('SELECT * FROM events ORDER BY timestamp DESC LIMIT ?',(limit,)).fetchall()
+ def health(self):
+  with self._conn() as c:
+   return {"path":str(self.path),"events":c.execute("SELECT COUNT(*) FROM events").fetchone()[0],"alerts":c.execute("SELECT COUNT(*) FROM alerts").fetchone()[0],"incidents":c.execute("SELECT COUNT(*) FROM incidents").fetchone()[0]}
